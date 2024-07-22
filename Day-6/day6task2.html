@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Enter Leamons</title>
+</head>
+<body>
+    Enter Leamons: <input type="number" id="age" value="">
+    <button onclick="myFunction()">Submit</button>
+    <div id="demo"></div>
+
+    <script>
+        function balaji() {
+            var noLeamons = document.getElementById('age').value;
+            var noLeamons=Number(noLeamons);
+            let text = (noLeamons<0) ? "Please enter positive data" :(Number.isInteger(noLeamons) && (noLeamons>21)) ? (21 - noLeamons): "test";
+            document.getElementById("demo").innerHTML = text;
+    </script>
+</body>
+</html>

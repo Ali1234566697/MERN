@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Enter Leamons</title>
+</head>
+<body>
+    Enter Leamons: <input type="number" id="leamon" value="">
+    <button onclick="balaji()">Submit</button>
+    <div id="para"></div>
+
+    <script>
+        function balaji() {
+            var a = document.getElementById('leamon').value;
+            var change=Number(leamon);
+            if (a == 21) {
+                document.write("Enter temple");
+            } 
+            else if (a > 21) {
+                document.write("You have Extra  leamons " + (a - 21));
+            }
+            else if (a < 21) {
+                 document.write("You need  " + (21 - a) + " leamons ");
+            }
+            else if (a <= 0){
+                document.write("Enter valid data");
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+</head>
+<body>
+	<script>
+		let text = "Hi this is Chalapathi Institute of Enginnering and Technology";
+		let lists = "Apple, Banana, Kiwi";
+		let length = text.length;
+		var text12 = "                  Hi            this              world           ";
+		document.write(length);
+		document.write("<br>");
+
+		let pos = text.charAt(0);
+		document.write(pos);
+		document.write("<br>");
+
+		let part = text.slice(10);
+		document.write(part);
+		document.write("<br>");
+
+		let strings = lists.slice(7,13);
+		document.write(strings);
+		document.write("<br>");
+
+		let substrings = lists.substring(7, 13);
+		document.write(substrings);
+		document.write("<br>");
+
+		let text1 = text.toUpperCase();
+		document.write(text1);
+		document.write("<br>");
+
+		let text2 = text.toLowerCase();
+		document.write(text2);
+		document.write("<br>");
+
+		let text3 = text1.concat(" ", text2);
+		document.write(text3);	
+		document.write("<br>");
+
+		let text4 = text12.trim();
+		document.write(text4);
+		document.write("<br>");
+
+		let text5 = text12.trimStart();
+		document.write(text5);
+		document.write("<br>");
+	</script>
+</body>
+</html>
