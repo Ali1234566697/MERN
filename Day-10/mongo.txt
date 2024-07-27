@@ -1,0 +1,70 @@
+mongosh
+
+use ciet
+
+show ciet
+
+
+//creating tables
+ db.createCollection('student')
+
+//showing tables
+show collection
+
+ db.student.insertOne({sname:"balaji",age:100,email:"balaji@gmail.com",phone:9875643210,salary:888.78,address:"salem"})
+
+ db.student.insertOne({sname:'manoj',age:20,email:'manoj@gmail.com',phone:9875643510,salary:868.78,address:'guntur'})
+
+ db.student.find()
+
+show collections
+
+db.customer.insertOne({_id:1,name:'mohan',age:30,dob: '2002-10-10'})
+
+
+db.customer.find()
+
+
+db.customer.find().pretty()
+
+
+ db.customer.insertOne({_id:2,name:'jagan',age:40,dob: '2005-12-10'})
+
+db.customer.insertMany([{_id:3,name:'chandrababu',age:60,dob: '1990-12-12'},{_id:4,name:'modi',age:80,dob: '1100-12-12'},{_id:5,name:'rahul',age:50,dob: '1996-10-10'}])
+
+
+updating name
+db.customer.updateOne({age:80},{$set:{name:"modiji"}})
+
+Adding column
+db.customer.updateOne({name:'modiji'},{$set:{email:"modiji@gmail.com",address:"gujarat"}})
+
+update all records and changing existing records
+ db.customer.updateMany({},{$set:{address:"india",email:"india@gmail.com"}})
+
+
+cheacking records name anju if it is not there this will create new record
+db.customer.updateOne({name:"anju"},{$set:{adhar:"123412341234",pan:"Axmpmpmp"}},{upsert:true})
+
+age is lessthan 50 then we changing adrees to kolkata
+db.customer.updateMany({age:{$lt:50}},{$set:{address:"kolkata"}})
+
+
+grater than $gt
+lessthan equalto $lte
+greaterthann equalto $gte
+equalto $eq
+not equal to $ne
+
+ db.customer.find({age:{$ne:80}})
+
+db.customer.find().limit(3)
+
+
+db.customer.find().count()
+
+db.customer.updateMany({},{$set:{salary:5000}})
+
+
+
+

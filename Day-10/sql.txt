@@ -1,0 +1,63 @@
+
+create database ciet
+create table student(sid int(5) primary key auto_increment,sname varchar(15) not null,address text null,phone varchar(10) unique,dob date null,salary float(5,3) not null,email varchar(20) unique)
+insert into student(sname,address,phone,dob,salary,email)
+ values('sashi','srinagar','999999999','2024-07-26',999.99,'sashi@gmail.com'),
+('sudarshan','tirupati','9767656754','2004-05-25',998.99,'sudarshan@gmail.com'),
+('ali','guntur','9993299999','2021-01-22',979.99,'uday@gmail.com'),
+('narendra','kadapa','9993299239','2020-04-17',969.99,'aslam@gmail.com'),
+('narasimha','araku','9993779239','2019-03-16',959.99,'mrsaslam@gmail.com')
+
+
+Query for address guntur
+SELECT * FROM student WHERE address='guntur'
+
+salary 888.65
+SELECT * FROM student WHERE salary=888.65
+
+name starts with n........
+SELECT * FROM student WHERE sname LIKE 'n%'
+
+name ended with .....a
+SELECT * FROM `student` WHERE sname LIKE '%a'
+
+name starts with n and ended with a
+SELECT * FROM `student` WHERE sname LIKE 'n%a'
+
+name starts with n and ended with a and 6th letter is d  then we do n after 4 underscores ____ leater we need letter
+SELECT * FROM `student` WHERE sname LIKE 'n____d%a'    
+
+to get maximum salary
+SELECT sname,salary FROM student WHERE salary = (SELECT MAX(salary) FROM student)     
+
+To get minimum salary
+SELECT sname,salary FROM student WHERE salary = (SELECT MIN(salary) FROM student)       
+
+dob years betwwen 1945 and 2000 years
+SELECT * FROM student WHERE dob BETWEEN '1995-01-01' AND '2000-12-31';   
+
+
+highst paying salary order
+SELECT * FROM student ORDER BY salary DESC                
+
+top 3 highst salary
+SELECT * FROM student ORDER BY salary DESC LIMIT 3;
+
+schema
+DESCRIBE student
+
+phone no. is null
+SELECT * FROM student WHERE phone IS NULL;
+                 
+PHONE NO. IS NOT NULL
+SELECT * FROM student WHERE phone IS NOT NULL;   
+
+count of address
+SELECT address, COUNT(*) FROM student GROUP BY address        
+
+concat of names by their address
+SELECT address, COUNT(*),GROUP_CONCAT(sname) FROM student GROUP BY address;       
+
+
+concat of names by their address as alice names
+SELECT address, COUNT(*) AS total,GROUP_CONCAT(sname) FROM student GROUP BY address;                   
