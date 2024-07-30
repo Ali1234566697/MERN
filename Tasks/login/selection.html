@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selection</title>
+</head>
+<body>
+    <h2>Select Your Information</h2>
+    <form id="selectionForm">
+        <p>Gender:</p>
+        <input type="radio" id="male" name="gender" value="male">
+        <label for="male">Male</label><br>
+        <input type="radio" id="female" name="gender" value="female">
+        <label for="female">Female</label><br><br>
+
+        <p>Occupation:</p>
+        <input type="radio" id="student" name="occupation" value="student">
+        <label for="student">Student</label><br>
+        <input type="radio" id="employee" name="occupation" value="employee">
+        <label for="employee">Employee</label><br><br>
+
+        <button type="button" onclick="submitForm()">Submit</button>
+    </form>
+
+    <p id="timerDisplay">Time remaining: 60 seconds</p>
+
+    <script>
+        let timer;
+        let timeRemaining = 60;
+
+        function startTimer() {
+            timer = setInterval(() => {
+                timeRemaining--;
+                document.getElementById('timerDisplay').innerText = "Time remaining: " + timeRemaining + " seconds";
+                if (timeRemaining <= 0) {
+                    clearInterval(timer);
+                    alert("Time is up!");
+                    window.location.href = "index.html"; 
+                }
+            }, 1000); 
+        }
+
+        function submitForm() {
+            clearInterval(timer); 
+            alert("Form submitted!");
+            window.location.href = "index.html"; 
+        }
+
+        window.onload = startTimer;
+    </script>
+</body>
+</html>
+
