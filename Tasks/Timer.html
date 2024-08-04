@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css">
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 500px;
+            margin: 40px auto;
+            padding: 20px;
+            border: 1px solid;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+        .form-control {
+            width: 95%;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid;
+            font-size: 18px;
+        }
+        .btn {
+            background-color: grey;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .btn:hover {
+            background-color: black;
+        }
+        #timer {
+            font-size: 23px;
+            font-weight: bold;
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background-color: white;
+            padding: 5px;
+            border: 1px solid white;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+        }
+        #logout-btn {
+            margin-left: 10px;
+            font-size: 23px;
+            cursor: pointer;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 11px;
+            text-align: center;
+        }
+        .fa {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="login-form">
+        <h2>Login</h2>
+        <form>
+            <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
+            <input type="password" id="password" class="form-control" placeholder="Enter your password" required>
+            <button class="btn" id="login-btn">Login</button>
+        </form>
+    </div>
+
+    <div class="container" id="welcome-page" style="display: none;">
+        <h2 id="welcome-message"></h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Age</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="table-body">
+                <tr>
+                    <td>1</td>
+                    <td>Harry Potter</td>
+                    <td>harry@example.com</td>
+                    <td>26</td>
+                    <td>
+                        <i class="fa fa-pencil edit" aria-hidden="true"></i>
+                        <i class="fa fa-trash delete" aria-hidden="true"></i>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Ron Weasley</td>
+                    <td>ron@example.com</td>
+                    <td>26</td>
+                    <td>
+                        <i class="fa fa-pencil edit" aria-hidden="true"></i>
+                        <i class="fa fa-trash delete" aria-hidden="true"></i>
+                    </td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Hermione Granger</td>
+                    <td>hermione@example.com</td>
+                    <td>25</td>
+                    <td>
+                        <i class="fa fa-pencil edit" aria-hidden="true"></i>
+                        <i class="fa fa-trash delete" aria-hidden="true"></i>
+                    </td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Draco Malfoy</td>
+                    <td>draco@example.com</td>
+                    <td>27</td>
+                    <td>
+                        <i class="fa fa-pencil edit" aria-hidden="true"></i>
+                        <i class="fa fa-trash delete" aria-hidden="true"></i>
+                    </td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Luna Lovegood</td>
+                    <td>luna@example.com</td>
+                    <td>27</td>
+                    <td>
+                        <i class="fa fa-pencil edit" aria-hidden="true"></i>
+                        <i class="fa fa-trash delete" aria-hidden="true"></i>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <p id="timer" style="display: none;">
+        <span id="timer-text">60 seconds</span>
+        <button id="logout-btn"><i class="fa fa-sign-out" aria-hidden="true"></i></button>
+    </p>
+
+    <script>
+        const loginForm = document.getElementById('login-form');
+        const welcomePage = document.getElementById('welcome-page');
+        const loginBtn = document.getElementById('login-btn');
+        const timerElement = document.getElementById('timer');
+        const welcomeMessage = document.getElementById('welcome-message');
+        const logoutBtn = document.getElementById('logout-btn');
+        const tableBody = document.getElementById('table-body');
+
+        loginBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const emailInput = document.getElementById('email');
+            const username = emailInput.value.split('@')[0];
+            loginForm.style.display = 'none';
+            welcomePage.style.display = 'block';
+            timerElement.style.display = 'flex';
+            welcomeMessage.textContent = `Welcome to lasya's timer project, ${username}!`;
+            let timer = 60;
+            const intervalId = setInterval(() => {
+                timer--;
+                timerElement.querySelector('#timer-text').textContent = `${timer} seconds`;
+                if (timer === 0) {
+                    clearInterval(intervalId);
+                    loginForm.style.display = 'block';
+                    welcomePage.style.display = 'none';
+                    timerElement.style.display = 'none';
+                }
+            }, 1000);
+        });
+
+        logoutBtn.addEventListener('click', () => {
+            loginForm.style.display = 'block';
+            welcomePage.style.display = 'none';
+            timerElement.style.display = 'none';
+        });
+
+        tableBody.addEventListener('click', (e) => {
+            if (e.target.classList.contains('delete')) {
+                deleteRow(e.target);
+            }
+        });
+
+        function deleteRow(deleteButton) {
+            const row = deleteButton.closest('tr');
+            row.remove();
+        }
+        document.addEventListener('contextmenu', event => event.preventDefault());
+        document.addEventListener("keydown", function (event){
+        if (event.ctrlKey){
+            event.preventDefault();
+        }
+        if(event.keyCode == 123){
+            event.preventDefault();
+         }
+});
+    </script>
+</body>
+</html>
